@@ -1,11 +1,11 @@
 #from staty import NPC
 import sqlite3
 #import random
-from add import add_npc
+from add import add_npc, p1
 from load import load_npc
 
 
-p1 = []  # postacie
+  # postacie
 
 polaczenie = sqlite3.connect('list_npc.db')
 
@@ -15,15 +15,15 @@ kursor.execute("""
 CREATE TABLE IF NOT EXISTS npcs (
         fr TEXT,
         name TEXT,
+        race TEXT,
         hp INTEGER,
         ll INTEGER,
         rl INTEGER,
-        ch INTEGER,
         la INTEGER,
         ra INTEGER,
+        ch INTEGER,
         he INTEGER,
         WS INTEGER,
-        race TEXT,
         BS INTEGER,
         S INTEGER,
         T INTEGER,
@@ -38,10 +38,18 @@ polaczenie.commit()
 polaczenie.close()
 
 while True:
-    choice = input("A: Add NPC\tB: Show NPC\nE: exit\n").upper()
+    choice = input("A: Add NPC\tB: Show NPC\tR: Recently added\nE: exit\n").upper()
     if choice == 'A':
         add_npc()
     elif choice == 'B':
-        load_npc()
+        searchby = input("Search by: \nA: fraction\tB: name\n").upper()
+        if searchby == 'A':
+            load_npc("fr")
+        elif searchby == 'B':
+            load_npc("race")
     elif choice == 'E':
         break
+    elif choice == 'R':
+        print(p1)
+
+# usprawnij wyswietlanie

@@ -23,5 +23,6 @@ class NPC:
         self.Int = Int
         self.WP = WP
         self.Fel = Fel
+
         #self.connection = sqlite3.connect('list_npc.db')
         #self.cursor = self.connection.cursor()
